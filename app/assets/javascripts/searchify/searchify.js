@@ -3,6 +3,7 @@
         return this.each(function() {
             $(this).autocomplete({
                 source: $(this).data("search-url"),
+                delay: $(this).data('delay') || 500,
                 appendTo: 'body',
                 select: function (event, ui) {
                     if (select_url = $(this).data("select-url")) {
