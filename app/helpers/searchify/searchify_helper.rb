@@ -9,8 +9,11 @@ module Searchify
       select_url  = options.delete(:select_url) || extract_select_url(options.delete(:action))
 
       # tag options
+      data = {:'select-url' => select_url, :'search-url' => search_url }
+      data[:autofocus] = true if Searchify::Config.autofocus
+
       options[:class] = [:searchify].push(options[:class]).flatten.compact
-      options[:data]  = {:'select-url' => select_url, :'search-url' => search_url}.merge(options[:data] || {})
+      options[:data]  = data.merge(options[:data] || {})
 
       text_field_tag(:searchify, nil, options)
     end
@@ -92,7 +95,7 @@ class ActionView::Helpers::FormBuilder
 
     # value
     label_method = options.delete(:label_method) || Searchify::Config.label_method
-    
+
     # fetch the value only if object respond_to model_name
     html_value = object.respond_to?(model_name) ? object.send(model_name).try(label_method) : ""
 
@@ -107,7 +110,7 @@ class ActionView::Helpers::FormBuilder
 
   def extract_search_url(collection, params=nil, search_strategy=nil)
     params ||= {}
-    
+
     url = "#{@template.searchify_path}/search/#{collection}.json?"
     params[:search_strategy] = search_strategy if search_strategy
 

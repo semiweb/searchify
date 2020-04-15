@@ -7,6 +7,7 @@ module Searchify
                     :limit,
                     :search_key,
                     :label_method,
+                    :autofocus,
                     :default_action
 
       def configure(&block)
@@ -27,6 +28,7 @@ module Searchify
           :@limit           => 30,
           :@search_key      => nil,
           :@label_method    => :name,
+          :@autofocus       => true,
           :@default_action  => :show
         }
       end

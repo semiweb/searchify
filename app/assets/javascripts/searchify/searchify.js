@@ -5,7 +5,7 @@
             $this.autocomplete({
                 source: $this.data('search-url'),
                 delay: $this.data('delay') || 500,
-                autoFocus: $this.data('autofocus') || true,
+                autoFocus: $this.data('autofocus') || false,
                 appendTo: 'body',
                 select: function (event, ui) {
                     var select_url = $this.data("select-url");
