@@ -12,8 +12,11 @@
                     if (select_url) {
                         for (element in ui.item)
                             select_url = select_url.replace('\(' + element + '\)', ui.item[element]);
-
-                        Turbolinks.visit(select_url);
+                        if (window.Turbolinks) {
+                            Turbolinks.visit(select_url);
+                        } else {
+                            window.location.href = select_url;
+                        }
                     } else {
                         $this.prev().val(ui.item.id);
                         $this.data('value', ui.item.id);
