@@ -6,7 +6,7 @@ module Searchify
       # searchify options
       collection  = options.delete(:collection) || args.shift || extract_collection
       search_url  = options.delete(:search_url) || extract_search_url(collection, options.delete(:scopes), options.delete(:search_strategy))
-      select_url  = options.delete(:select_url) || extract_select_url(options.delete(:action))
+      select_url  = options.delete(:select_url) { extract_select_url(options.delete(:action)) }
 
       # tag options
       data = {:'select-url' => select_url, :'search-url' => search_url }
